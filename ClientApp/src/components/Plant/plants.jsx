@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-
-
+// new
 export class plants extends Component
 {
     constructor(props){
