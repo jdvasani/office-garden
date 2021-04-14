@@ -7,7 +7,7 @@ namespace plants.Data
     {
         List<plant> GetAllPlants();
 
-        void WaterPlant(int id);
+        plant WaterPlant(int id);
 
         void  dryStatus(int id);
         
