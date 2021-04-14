@@ -29,6 +29,8 @@ componentDidMount(){
    
 }
 
+
+
 lookStatus(id, obj){
     axios.put("api/plants/changeStatus/"+id).then(result =>
         {   
@@ -43,8 +45,9 @@ needWaterStatus(id,obj){
         { 
             obj.setState({
                 bgColor: 'red'
+                
               })
-            window.location.reload(false);
+              obj.populateData();
           
             }
     )
