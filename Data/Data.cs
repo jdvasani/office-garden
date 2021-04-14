@@ -42,7 +42,7 @@ namespace plants.Data
                  name="English Lavender Plants",
                  Id=5,
                 lastWatered=DateTime.Now,
-                status="need watered"
+                status="need water"
 
              },
          };
