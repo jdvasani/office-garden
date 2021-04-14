@@ -21,7 +21,7 @@ namespace plants.Controllers
         }
 
 
-        [HttpPost("dryStatus/{id}")]
+        [HttpPut("dryStatus/{id}")]
 
         public IActionResult dryStatus(int id)
         {
@@ -40,8 +40,8 @@ namespace plants.Controllers
      [HttpPut("WaterPlant/{id}")]
      public IActionResult WaterPlant(int id)
     {      
-           _service.WaterPlant(id);
-         return Ok();
+           var p=_service.WaterPlant(id);
+         return Ok(p);
     }
 
 
