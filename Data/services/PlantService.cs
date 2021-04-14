@@ -19,7 +19,7 @@ namespace plants.Data
         public List<plant> GetAllPlants() =>  Data.plants.ToList();
 
        
-        public void WaterPlant(int id)
+        public plant WaterPlant(int id)
         {
              var  p = Data.plants.FirstOrDefault(n => n.Id == id);         
            if(p!= null)
@@ -35,6 +35,7 @@ namespace plants.Data
                  
                
            }
+           return p;
         }
 
         public void changeStatus(int id)
