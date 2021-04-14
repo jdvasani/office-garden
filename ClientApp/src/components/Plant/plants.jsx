@@ -9,9 +9,7 @@ export class plants extends Component
     
     this.state ={
         plantsarray: [],
-        loading: true,
-        interval: null,
-        interval1: null
+        loading: true
     }
 
 }
@@ -19,42 +17,41 @@ componentDidMount(){
     this.populateData();
    
 }
-
- waterPlant(id){
-     
+ waterPlant(id,obj){
     axios.put("api/plants/WaterPlant/"+id).then(result =>
         { 
-              window.location.reload(false);
-          
+            this.populateData();
+           
             }
     )
       
-  setTimeout(this.lookStatus,10000,id);
-  setTimeout(this.needWaterStatus,21600000,id);
+    setTimeout(this.lookStatus,10000,id,obj);
    
 }
 
-lookStatus(id){
+lookStatus(id, obj){
     axios.put("api/plants/changeStatus/"+id).then(result =>
-        {  
-             console.log(result.data)
-            window.location.reload(false);
-          
+        {   
+            obj.populateData();
             }
     )
+    setTimeout(obj.needWaterStatus,21600000,id,obj);
 }
 
-needWaterStatus(id){
+needWaterStatus(id,obj){
     axios.put("api/plants/dryStatus/"+id).then(result =>
         { 
+            obj.setState({
+                bgColor: 'red'
+              })
             window.location.reload(false);
           
             }
     )
-    clearInterval(this.interval1);
+       
+    
+
 }
-
-
 
 populateData(){
     axios.get("api/plants/GetAllPlants").then(result =>
@@ -87,7 +84,7 @@ renderAllPlants(plantsarray){
                         <td> {plant.lastWatered}</td>
                         <td>
                           <div className='form-group'>
-                              <button onClick={()=> this.waterPlant(plant.id)} className="btn btn-success" >
+                              <button onClick={()=> this.waterPlant(plant.id,this)} className="btn btn-success" >
                               Water plant
                               </button>
                               </div>     
